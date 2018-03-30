@@ -15,11 +15,13 @@ except ImportError:
 
 import credentials
 
+board_url = "http://libertybasic.conforums.com/"
+
 cj = CookieJar()
 opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
 opener.addheaders = [('User-agent', 'Testing')]
 urllib2.install_opener(opener)
-auth_url = "http://libertybasic.conforums.com/index.cgi?action=login2"
+auth_url = board_url + "index.cgi?action=login2"
 
 #Credential payload must be of this exact form:
 #

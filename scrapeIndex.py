@@ -1,9 +1,9 @@
-import lbLogin 
+import forumLogin 
 
 print("Performing Login...")
-lbLogin.doLogin()
+forumLogin.doLogin()
 
-contents = lbLogin.resp.read()
+contents = forumLogin.resp.read()
 
 print("Creating board index.html...")
 f = open("index.html", "w+")

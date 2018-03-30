@@ -28,28 +28,10 @@ for tag in res:
 	#This filters down to just the ones with links.  It scrapes the links, and grabs the contents of the 
 	#contained <B> tag.
 	if tag.a is not None:
-		name = tag.b.contents[1]
-		print(name)
+		full_board_name = tag.b.contents[1]
+		print(full_board_name)
 
-		#This removes forward slashes from board names.  This prevents attempted creation
-		#of folders with slashes in the path, which are not allowed.
-		name = name.replace("/"," or ")
-
-		#Make sure any leading or trailing whitespace is removed,
-		#to prevent folder navigation issues.
-		name = name.strip()
-
-		#"Staff Discussion" is actually the name of two separate boards.
-		#This bit of code separates the two so that the topics in each board don't
-		#get dumped into the same folder.  The older, hidden Staff Discussion is at the
-		#bottom of the list.
-		if name == "Staff Discussion":
-			if STAFFFLAG:
-				name = "Old " + name
-			else:
-				STAFFFLAG = True
-		
-		f.write(tag.a.get("href") + "|" + name + "\n")
+		f.write(tag.a.get("href") + "|" + full_board_name + "\n")
 		try:
 			os.mkdir(name)
 		except OSError:	

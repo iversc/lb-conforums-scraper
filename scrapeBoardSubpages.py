@@ -1,14 +1,14 @@
 from bs4 import BeautifulSoup
-import lbLogin
+import forumLogin
 
 f = open("boardindexes.txt", "r")
 indexes = f.readlines()
 f.close()
 
 print("Logging in to LB forums...")
-lbLogin.doLogin()
+forumLogin.doLogin()
 
-board_base_url = "http://libertybasic.conforums.com/index.cgi?board="
+board_base_url = forumLogin.board_url + "index.cgi?board="
 
 for index in indexes:
 	index = index.strip()
@@ -17,15 +17,14 @@ for index in indexes:
 	contents = f.read()
 	f.close()
 
-	(folder,file_name) = index.split("/")
-	board_name = file_name.split("-")[0]
+	(board_name,file_name) = index.split("/")
 	board_url = board_base_url + board_name
 	
 	soup = BeautifulSoup(contents, "lxml")
 
 	pages = int(soup.find_all("b",string="Pages:")[0].parent.find_all("font")[-1].string)
 
-	print("Board '" + folder + "':")
+	print("Board '" + board_name + "':")
 	print("    "+ str(pages) + " pages detected.")
 	print()
 	print("    Collecting subpages...")
@@ -40,7 +39,7 @@ for index in indexes:
 
 		f = open(index_file_name, "w+")
 		
-		resp = lbLogin.urllib2.urlopen(page_url)
+		resp = forumLogin.urllib2.urlopen(page_url)
 
 		f.write(resp.read().decode("ISO-8859-1"))
 		f.close()
