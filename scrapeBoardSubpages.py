@@ -42,6 +42,6 @@ for index in indexes:
 		
 		resp = lbLogin.urllib2.urlopen(page_url)
 
-		f.write(resp.read().decode("utf-8"))
+		f.write(resp.read().decode("ISO-8859-1"))
 		f.close()
 		

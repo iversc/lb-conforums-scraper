@@ -29,7 +29,7 @@ for board in boards:
 	resp = lbLogin.urllib2.urlopen(board_url)
 	contents = resp.read()
 
-	f.write(contents.decode("utf-8"))
+	f.write(contents.decode("ISO-8859-1"))
 	f.close()	
 
 bif.close()
