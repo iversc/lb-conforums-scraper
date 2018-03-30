@@ -35,6 +35,10 @@ for tag in res:
 		#of folders with slashes in the path, which are not allowed.
 		name = name.replace("/"," or ")
 
+		#Make sure any leading or trailing whitespace is removed,
+		#to prevent folder navigation issues.
+		name = name.strip()
+
 		#"Staff Discussion" is actually the name of two separate boards.
 		#This bit of code separates the two so that the topics in each board don't
 		#get dumped into the same folder.  The older, hidden Staff Discussion is at the
@@ -45,7 +49,7 @@ for tag in res:
 			else:
 				STAFFFLAG = True
 		
-		f.write(tag.a.get("href") + "," + name + "\n")
+		f.write(tag.a.get("href") + "|" + name + "\n")
 		try:
 			os.mkdir(name)
 		except OSError:	
