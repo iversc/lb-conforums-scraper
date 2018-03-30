@@ -17,7 +17,7 @@ bif = open("boardindexes.txt", "w+")
 
 for board in boards:
 	board_url_suffix = board.strip().split("|")[0]
-	board_name = board.split("=")[1]
+	board_name = board_url_suffix.split("=")[1]
 	board_url = board_url_base + board_url_suffix
 
 	print("    Downloading index for board '" + board_name + "'...")

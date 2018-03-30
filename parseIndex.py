@@ -31,8 +31,10 @@ for tag in res:
 		full_board_name = tag.b.contents[1]
 		print(full_board_name)
 
+		board_url = tag.a.get("href")
+		board_name = board_url.split("=")[1]
 		f.write(tag.a.get("href") + "|" + full_board_name + "\n")
 		try:
-			os.mkdir(name)
+			os.mkdir(board_name)
 		except OSError:	
 			pass
