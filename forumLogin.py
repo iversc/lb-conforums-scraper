@@ -19,7 +19,7 @@ board_url = "http://libertybasic.conforums.com/"
 
 cj = CookieJar()
 opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
-opener.addheaders = [('User-agent', 'Testing')]
+opener.addheaders = [('User-agent', 'Chris Iverson Conforums Scraper')]
 urllib2.install_opener(opener)
 auth_url = board_url + "index.cgi?action=login2"
 
