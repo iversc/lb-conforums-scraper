@@ -12,7 +12,7 @@ try:
 except OSError:
 	pass
 
-members_url = "http://libertybasic.conforums.com/index.cgi?action=mlall"
+members_url = forumLogin.board_url + "index.cgi?action=mlall"
 
 print("Scraping members index page...")
 resp = forumLogin.urllib2.urlopen(members_url)
